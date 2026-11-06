@@ -1,0 +1,21 @@
+<div class="layout">
+  <aside class="nav">
+    <h2>LabLogbook</h2>
+    <p class="badge">{{ user()?.role || 'Sin rol' }}</p>
+    <nav>
+      <a *ngFor="let link of links" [routerLink]="link.path" routerLinkActive="active">{{ link.label }}</a>
+    </nav>
+    <button class="warn" (click)="auth.logout()">Cerrar sesión</button>
+  </aside>
+
+  <main class="container">
+    <div class="header card">
+      <div>
+        <strong>{{ user()?.first_name }} {{ user()?.last_name }}</strong>
+        <div>{{ user()?.institutional_email }}</div>
+      </div>
+      <div>Panel operativo académico</div>
+    </div>
+    <router-outlet></router-outlet>
+  </main>
+</div>
