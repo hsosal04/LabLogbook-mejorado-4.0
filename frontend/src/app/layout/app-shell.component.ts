@@ -60,6 +60,14 @@ import { AuthService } from '../core/services/auth.service';
             >
               Actividades
             </a>
+
+            <a
+              routerLink="/app/attendance"
+              routerLinkActive="active"
+              (click)="closeMobileMenu()"
+            >
+              Asistencias
+            </a>
           }
 
           @if (currentUser()?.role === 'PROFESSOR') {
