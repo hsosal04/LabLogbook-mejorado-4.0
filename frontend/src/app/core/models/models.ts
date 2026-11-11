@@ -154,3 +154,19 @@ export interface ComputerUsageRequest {
   created_at: string;
   updated_at?: string;
 }
+
+export interface Attendance {
+  id: number;
+  user: number;
+  user_name: string;
+  lab: number;
+  lab_name: string;
+  entry_time: string;
+  exit_time?: string | null;
+  activity_summary?: string;
+  status: 'REGISTERED' | 'CLOSED';
+  created_by?: number;
+  created_at?: string;
+  updated_at?: string;
+  duration_minutes?: number | null;
+}
