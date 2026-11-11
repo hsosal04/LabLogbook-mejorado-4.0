@@ -55,9 +55,9 @@ class AttendanceViewSet(viewsets.ModelViewSet):
 
         exit_time = request.data.get('exit_time') or timezone.now()
         serializer = self.get_serializer(
-            attendance,
-            data={'exit_time': exit_time, 'status': Attendance.Status.CLOSED},
-            partial=True,
+        attendance,
+        data={'user': attendance.user_id, 'exit_time': exit_time, 'status': Attendance.Status.CLOSED},
+        partial=True,
         )
         serializer.is_valid(raise_exception=True)
         serializer.save(status=Attendance.Status.CLOSED)

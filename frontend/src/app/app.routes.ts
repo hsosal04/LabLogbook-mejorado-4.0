@@ -23,6 +23,7 @@ export const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
       { path: 'dashboard', loadComponent: () => import('./features/dashboard/dashboard.component').then(m => m.DashboardComponent) },
       { path: 'profile', loadComponent: () => import('./features/profile/profile.component').then(m => m.ProfileComponent) },
+      { path: 'attendance', canActivate: [roleGuard], data: { roles: ['ADMIN', 'SUPERVISOR'] }, loadComponent: () => import('./features/attendance/attendance.component').then(m => m.AttendanceComponent) },
       { path: 'activities', canActivate: [roleGuard], data: { roles: ['ADMIN', 'SUPERVISOR'] }, loadComponent: () => import('./features/activities/activities.component').then(m => m.ActivitiesComponent) },
       { path: 'reports', canActivate: [roleGuard], data: { roles: ['ADMIN', 'SUPERVISOR'] }, loadComponent: () => import('./features/reports/reports.component').then(m => m.ReportsComponent) },
       { path: 'classrooms', canActivate: [roleGuard], data: { roles: ['PROFESSOR'] }, loadComponent: () => import('./features/classrooms/classrooms.component').then(m => m.ClassroomsComponent) },
