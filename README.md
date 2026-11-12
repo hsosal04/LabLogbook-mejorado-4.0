@@ -74,6 +74,7 @@ http://127.0.0.1:8000/admin/
 cd frontend
 npm install
 npm start
+ng serve --host 0.0.0.0
 ```
 
 
