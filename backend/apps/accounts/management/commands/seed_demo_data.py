@@ -50,7 +50,7 @@ class Command(BaseCommand):
                 'department': 'FCC',
             }
         )
-        admin.set_password('yoga0401')
+        admin.set_password('<yoga0401>')
         admin.is_staff = True
         admin.is_superuser = True
         admin.role = 'ADMIN'
@@ -73,7 +73,7 @@ class Command(BaseCommand):
                 'department': 'FCC',
             }
         )
-        supervisor.set_password('yoga0401')
+        supervisor.set_password('<yoga0401>')
         supervisor.role = 'SUPERVISOR'
         supervisor.status = 'ACTIVE'
         supervisor.is_active = True
@@ -94,16 +94,38 @@ class Command(BaseCommand):
                 'department': 'FCC',
             }
         )
-        student.set_password('yoga0401')
+        student.set_password('<yoga0401>')
         student.role = 'STUDENT'
         student.status = 'ACTIVE'
         student.is_active = True
         student.department = student.department or 'FCC'
         student.save()
 
-        # El directorio docente se usa como catálogo de nombres para horarios, no como cuentas de usuario.
-        # Los profesores se registran posteriormente con su propio correo institucional desde el formulario público.
+        # El directorio docente se usa como catálogo de nombres para horarios.
+        # Los profesores reales se registran con su propio correo institucional,
+        # pero aquí se crea un profesor de demostración para probar el rol.
         User.objects.filter(role='PROFESSOR', student_code__startswith='PROF-').delete()
+
+        professor, _ = User.objects.get_or_create(
+            username='professor',
+            defaults={
+                'email': 'professor@example.com',
+                'institutional_email': 'professor@lablogbook.edu',
+                'student_code': 'PROF-001',
+                'role': 'PROFESSOR',
+                'first_name': 'Demo',
+                'last_name': 'Profesor',
+                'status': 'ACTIVE',
+                'is_active': True,
+                'department': 'FCC',
+            }
+        )
+        professor.set_password('<yoga0401>')
+        professor.role = 'PROFESSOR'
+        professor.status = 'ACTIVE'
+        professor.is_active = True
+        professor.department = professor.department or 'FCC'
+        professor.save()
 
         desired_codes = []
         for label in FCC_CLASSROOMS:
