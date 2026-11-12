@@ -1,1 +1,1 @@
-export const API_BASE_URL = `http://${window.location.hostname}:8000/api`;
+export const API_BASE_URL = 'https://lablogbook-backend.onrender.com/api';
