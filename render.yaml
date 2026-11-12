@@ -1,0 +1,34 @@
+services:
+  - type: web
+    name: lablogbook-backend
+    runtime: python
+    plan: free
+    region: oregon
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate --noinput
+    startCommand: gunicorn config.wsgi --log-file -
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: lablogbook-backend.onrender.com
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://lablogbook.vercel.app
+      - key: DATABASE_URL
+        fromDatabase:
+          name: lablogbook-db
+          property: connectionString
+      - key: ACCESS_TOKEN_MINUTES
+        value: "60"
+      - key: REFRESH_TOKEN_DAYS
+        value: "7"
+      - key: USE_FIRESTORE
+        value: "False"
+      - key: PYTHON_VERSION
+        value: 3.12.0
+databases:
+  - name: lablogbook-db
+    plan: free
+    databaseName: lablogbook_db
