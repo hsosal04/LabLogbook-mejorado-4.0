@@ -37,12 +37,12 @@ class Command(BaseCommand):
         admin, _ = User.objects.get_or_create(
             username='202058364',
             defaults={
-                'email': 'admin@example.com',
-                'institutional_email': 'admin@lablogbook.edu',
+                'email': 'hsosal04@gmail.com',
+                'institutional_email': 'hugo.sosal@outlook.buap.mx',
                 'student_code': '202058364',
                 'role': 'ADMIN',
-                'first_name': 'System',
-                'last_name': 'Administrator',
+                'first_name': 'Hugo',
+                'last_name': 'Sosa Lorenzo',
                 'is_staff': True,
                 'is_superuser': True,
                 'status': 'ACTIVE',
@@ -50,7 +50,7 @@ class Command(BaseCommand):
                 'department': 'FCC',
             }
         )
-        admin.set_password('<yoga0401>')
+        admin.set_password('yoga0401')
         admin.is_staff = True
         admin.is_superuser = True
         admin.role = 'ADMIN'
@@ -73,7 +73,7 @@ class Command(BaseCommand):
                 'department': 'FCC',
             }
         )
-        supervisor.set_password('<yoga0401>')
+        supervisor.set_password('yoga0401')
         supervisor.role = 'SUPERVISOR'
         supervisor.status = 'ACTIVE'
         supervisor.is_active = True
@@ -94,7 +94,7 @@ class Command(BaseCommand):
                 'department': 'FCC',
             }
         )
-        student.set_password('<yoga0401>')
+        student.set_password('yoga0401')
         student.role = 'STUDENT'
         student.status = 'ACTIVE'
         student.is_active = True
@@ -120,7 +120,7 @@ class Command(BaseCommand):
                 'department': 'FCC',
             }
         )
-        professor.set_password('<yoga0401>')
+        professor.set_password('yoga0401')
         professor.role = 'PROFESSOR'
         professor.status = 'ACTIVE'
         professor.is_active = True
@@ -184,8 +184,6 @@ class Command(BaseCommand):
                 'status': Activity.Status.PENDING,
             }
         )
-
-
 
         ComputerUsageRequest.objects.update_or_create(
             lab=primary_lab,
